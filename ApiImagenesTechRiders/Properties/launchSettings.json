@@ -9,12 +9,22 @@
     }
   },
   "profiles": {
-    "ApiImagenesTechRiders": {
+    "http": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7215;http://localhost:5151",
+      //"launchUrl": "swagger",
+      "applicationUrl": "https://4.231.123.62/;http://localhost:5151",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "https": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      //"launchUrl": "swagger",
+      "applicationUrl": "https://4.231.123.62/;http://localhost:5289",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -22,7 +32,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      //"launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
