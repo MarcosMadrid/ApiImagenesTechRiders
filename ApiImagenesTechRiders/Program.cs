@@ -1,10 +1,20 @@
 ﻿using ApiImagenesTechRiders.Helpers;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Api de Imagenes TechRiders",
+        Version = "v1",
+        Description = "",
+    });
+});
 
 string root = builder.Environment.ContentRootPath;
 string urlServerHost = builder.Configuration.GetValue<string>("ServerId")!;
