@@ -11,7 +11,8 @@ namespace ApiImagenesTechRiders.Helpers
         public HelperFilesManager(string absolutePath, string urlServerHost)
         {
             this.urlServerHost = urlServerHost;
-            List<string> folders = absolutePath.Split("\\").ToList();
+            List<string> folders = absolutePath.Split("/").ToList();
+            Console.Write(absolutePath);
             folders.RemoveRange(folders.Count - 4, 4);
             folders.Add("imgs");
             pathImgs = Path.Combine(folders.ToArray());
