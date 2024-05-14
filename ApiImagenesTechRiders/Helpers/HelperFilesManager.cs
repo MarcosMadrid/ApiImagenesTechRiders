@@ -32,9 +32,10 @@ namespace ApiImagenesTechRiders.Helpers
             }
 
             string imgPath = Path.Combine(pathImgs, imgName);
+            Console.Write(imgPath);
             using (Stream jpegStream = await ConvertToJpeg(imgStream))
             {
-                using (FileStream fs = File.OpenWrite(imgPath))
+                using (FileStream fs = File.Create(imgPath))
                 {
                     await jpegStream.CopyToAsync(fs);
                 }
@@ -50,6 +51,7 @@ namespace ApiImagenesTechRiders.Helpers
             }
 
             string imgPath = Path.Combine(pathImgs, imgName);
+            Console.Write(imgPath);
             using (Stream jpegStream = await ConvertToJpeg(imgStream))
             {
                 using (FileStream fs = File.OpenWrite(imgPath))
