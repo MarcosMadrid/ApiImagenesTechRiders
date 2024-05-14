@@ -14,7 +14,7 @@ namespace ApiImagenesTechRiders.Helpers
             List<string> folders = absolutePath.Split(Path.DirectorySeparatorChar).ToList();
             folders.RemoveRange(folders.Count - 4, 3);
             folders.Add("imgs");
-            pathImgs = Path.Combine(folders.ToArray());
+            pathImgs = Path.DirectorySeparatorChar + Path.Combine(folders.ToArray());
             Console.Write(pathImgs);
         }
 
@@ -35,7 +35,7 @@ namespace ApiImagenesTechRiders.Helpers
             Console.Write(imgPath);
             using (Stream jpegStream = await ConvertToJpeg(imgStream))
             {
-                using (FileStream fs = File.Create(imgPath))
+                using (FileStream fs = File.OpenWrite(imgPath))
                 {
                     await jpegStream.CopyToAsync(fs);
                 }
