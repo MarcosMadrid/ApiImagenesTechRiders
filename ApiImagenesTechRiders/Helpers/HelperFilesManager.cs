@@ -12,7 +12,7 @@ namespace ApiImagenesTechRiders.Helpers
         {
             this.urlServerHost = urlServerHost;
             List<string> folders = absolutePath.Split(Path.DirectorySeparatorChar).ToList();
-            folders.RemoveRange(folders.Count - 3, 3);
+            folders.RemoveRange(folders.Count - 4, 3);
             folders.Add("imgs");
             pathImgs = Path.Combine(folders.ToArray());
             Console.Write(pathImgs);
