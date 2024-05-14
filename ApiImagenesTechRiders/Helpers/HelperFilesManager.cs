@@ -11,11 +11,11 @@ namespace ApiImagenesTechRiders.Helpers
         public HelperFilesManager(string absolutePath, string urlServerHost)
         {
             this.urlServerHost = urlServerHost;
-            List<string> folders = absolutePath.Split("/").ToList();
-            Console.Write(absolutePath);
+            List<string> folders = absolutePath.Split("\\").ToList();
             folders.RemoveRange(folders.Count - 4, 4);
             folders.Add("imgs");
             pathImgs = Path.Combine(folders.ToArray());
+            Console.Write(pathImgs);
         }
 
         public bool ImgExists(string imgName)
@@ -69,8 +69,8 @@ namespace ApiImagenesTechRiders.Helpers
 
             string imgPath = Path.Combine(pathImgs, imgName);
             File.Delete(imgPath);
-        }        
-        
+        }
+
         public int GetIdImage(string fileName)
         {
             string idAndExtension = fileName.Split('-').Last();
@@ -100,6 +100,6 @@ namespace ApiImagenesTechRiders.Helpers
                 Console.WriteLine("Error converting image to JPEG: " + ex.Message);
                 throw;
             }
-        }        
+        }
     }
 }
