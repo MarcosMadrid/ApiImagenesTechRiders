@@ -130,7 +130,7 @@ namespace ApiImagenesTechRiders.Controllers
                 string userDataString = jsonObject["UserData"]!.ToString();
 
                 Usuario usuario = JsonConvert.DeserializeObject<Usuario>(userDataString)!;
-                string fileName = this.helperFilesManager.GetNameImage(usuario.Nombre, usuario.IdUsuario!);
+                string fileName = this.helperFilesManager.GetNameImage(usuario.Nombre!, usuario.IdUsuario!);
                 try
                 {
                     this.helperFilesManager.DeleteImg(fileName);
