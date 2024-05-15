@@ -18,8 +18,16 @@ namespace ApiImagenesTechRiders.Controllers
         {
             this.helperFilesManager = helperFilesManager;
             this.helperToken = helperToken;
-        }        
+        }
 
+        // POST: UploadImgPublic
+        /// <summary>
+        /// Crea una imagen en el server mediante su Nombre,ID.
+        /// </summary>
+        /// <response code="200">Created. Imagen correctamente creado en el server.</response>        
+        /// <response code="400">BadRequest. Mal formada la solicitud.</response>
+        /// <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
+        /// <response code="500">Error interno no esperado</response>/
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -36,6 +44,15 @@ namespace ApiImagenesTechRiders.Controllers
             }
         }
 
+
+        // POST: UploadImgUsuario
+        /// <summary>
+        /// Modifica/Crea una imagen en el server mediante su Nombre,ID.
+        /// </summary>
+        /// <response code="200">Created. Imagen correctamente creado en el server.</response>        
+        /// <response code="400">BadRequest. Mal formada la solicitud.</response>
+        /// <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
+        /// <response code="500">Error interno no esperado</response>/// 
         [HttpPost]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -84,6 +101,14 @@ namespace ApiImagenesTechRiders.Controllers
             }
         }
 
+        // POST: DeleteImg
+        /// <summary>
+        /// Modifica una USUARIOS en la BBDD mediante su ID, tabla USUARIOS
+        /// </summary>
+        /// <response code="200">Created. Imagen correctamente creado en el server.</response>        
+        /// <response code="400">BadRequest. Mal formada la solicitud.</response>
+        /// <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
+        /// <response code="500">Error interno no esperado</response>/// 
         [HttpDelete]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
