@@ -81,10 +81,10 @@ namespace ApiImagenesTechRiders.Helpers
             return id;
         }
 
-        public string GetNameImage(string userName, int userId)
+        public string GetNameImage(int userId)
         {            
             return 
-                userName + "-img-" + userId + ".jpeg";
+                 "user-img-" + userId + ".jpeg";
         }
 
         public async Task<MemoryStream> ConvertToJpeg(Stream imgStream)
