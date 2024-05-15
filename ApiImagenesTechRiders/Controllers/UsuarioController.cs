@@ -83,5 +83,52 @@ namespace ApiImagenesTechRiders.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> DeleteImg(string imageName)
+        {
+            try
+            {
+                if (imageName == null)
+                {
+                    return BadRequest();
+                }
+
+                //Recupera el token de la apiTechRiders y separa el Bearer
+                string token = Request.Headers.Authorization!.ToString().Split(" ").Last();
+                if (token == null)
+                {
+                    return Unauthorized();
+                }
+
+                //Decodifica y extrae el usuario del token
+                string decodeToken = await helperToken.DecodeToken(token);
+                JObject jsonObject = JsonConvert.DeserializeObject<JObject>(decodeToken)!;
+                string userDataString = jsonObject["UserData"]!.ToString();
+
+                Usuario usuario = JsonConvert.DeserializeObject<Usuario>(userDataString)!;
+                int IdUserImagen = this.helperFilesManager.GetIdImage(usuario.Imagen!);
+                if (usuario.IdUsuario != IdUserImagen)
+                {
+                    return Unauthorized();
+                }
+                try
+                {
+                    this.helperFilesManager.DeleteImg(imageName);
+                    return Ok();
+                }
+                catch (FileNotFoundException ex)
+                {                
+                    return NotFound(ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
