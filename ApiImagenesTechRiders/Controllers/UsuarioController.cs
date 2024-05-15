@@ -88,15 +88,10 @@ namespace ApiImagenesTechRiders.Controllers
         [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> DeleteImg(string imageName)
+        public async Task<ActionResult> DeleteImg()
         {
             try
-            {
-                if (imageName == null)
-                {
-                    return BadRequest();
-                }
-
+            {                
                 //Recupera el token de la apiTechRiders y separa el Bearer
                 string token = Request.Headers.Authorization!.ToString().Split(" ").Last();
                 if (token == null)
@@ -110,14 +105,10 @@ namespace ApiImagenesTechRiders.Controllers
                 string userDataString = jsonObject["UserData"]!.ToString();
 
                 Usuario usuario = JsonConvert.DeserializeObject<Usuario>(userDataString)!;
-                int IdUserImagen = this.helperFilesManager.GetIdImage(usuario.Imagen!);
-                if (usuario.IdUsuario != IdUserImagen)
-                {
-                    return Unauthorized();
-                }
+                string fileName = this.helperFilesManager.GetNameImage(usuario.Nombre, usuario.IdUsuario!);
                 try
                 {
-                    this.helperFilesManager.DeleteImg(imageName);
+                    this.helperFilesManager.DeleteImg(fileName);
                     return Ok();
                 }
                 catch (FileNotFoundException ex)
